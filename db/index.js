@@ -12,6 +12,11 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
+const SupervisorSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
 const AdminSchema = new mongoose.Schema({
   name: { type: String, required: true },
   password: { type: String, required: true },
@@ -76,12 +81,14 @@ const prizeSchema = new mongoose.Schema({
   },
 });
 
+const Supervisor = mongoose.model("Supervisor", SupervisorSchema);
 const Admin = mongoose.model("Admin", AdminSchema);
 const User = mongoose.model("User", UserSchema);
 const Payment = mongoose.model("Payment", paymentSchema);
 const Prize = mongoose.model("Prize", prizeSchema);
 
 module.exports = {
+  Supervisor,
   Admin,
   User,
   Payment,
